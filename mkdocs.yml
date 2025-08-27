@@ -1,0 +1,173 @@
+site_name: Enhanced TEx Documentation
+site_description: Advanced Telegram Data Extraction and Analysis Tool
+site_author: Enhanced TEx Team
+site_url: https://enhanced-tex.readthedocs.io/
+
+repo_name: vsmz4laj7n/TEx
+repo_url: https://github.com/vsmz4laj7n/TEx
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; 2024 Enhanced TEx Team
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/vsmz4laj7n/TEx
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/enhanced-tex
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/enhanced_tex
+
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - codehilite:
+      guess_lang: false
+      use_pygments: true
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      combine_header_slug: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+plugins:
+  - search:
+      lang: en
+  - git-revision-date-localized:
+      enable_creation_date: true
+  - minify:
+      minify_html: true
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Quick Start: quickstart.md
+  - Configuration: configuration.md
+  - User Guide:
+    - Basic Usage: user-guide/basic-usage.md
+    - Advanced Features: user-guide/advanced-features.md
+    - Analysis Features: user-guide/analysis-features.md
+    - Visualization: user-guide/visualization.md
+  - API Reference:
+    - Database Models: api/database-models.md
+    - Modules: api/modules.md
+    - Configuration: api/configuration.md
+  - Development:
+    - Contributing: development/contributing.md
+    - Testing: development/testing.md
+    - Deployment: development/deployment.md
+  - Troubleshooting: troubleshooting.md
+  - Changelog: changelog.md
+
+# Language selector
+extra:
+  version:
+    provider: mike
+  alternate:
+    - name: English
+      link: /en/
+      lang: en
+    - name: Tiếng Việt
+      link: /vi/
+      lang: vi
+
+# Documentation structure for both languages
+docs_dir: docs
+site_dir: site
+
+# Additional configuration for readthedocs.io
+extra_css:
+  - stylesheets/readthedocs.css
+
+# Search configuration
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+      prebuild_index: true
+      indexing: 'full'
+
+# Analytics (optional)
+google_analytics:
+  - G-XXXXXXXXXX
+  - auto
+
+# Repository information
+repo_name: vsmz4laj7n/TEx
+repo_url: https://github.com/vsmz4laj7n/TEx
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: |
+  Copyright &copy; 2024 <a href="https://github.com/vsmz4laj7n/TEx" target="_blank" rel="noopener">Enhanced TEx Team</a>
+  <br>
+  <small>Built with <a href="https://www.mkdocs.org/" target="_blank" rel="noopener">MkDocs</a> using a theme provided by <a href="https://readthedocs.org/" target="_blank" rel="noopener">Read the Docs</a>.</small>
