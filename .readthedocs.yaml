@@ -1,24 +1,263 @@
-# .readthedocs.yaml
-# Read the Docs configuration file
-# See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
+# Enhanced TEx ReadTheDocs Configuration
+# Comprehensive documentation with bilingual support (English/Vietnamese)
 
-# Required
+# Required ReadTheDocs version
 version: 2
 
-# Set the OS, Python version and other tools you might need
+# Build environment configuration
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.8"
-    # You can also specify other tool versions:
-    # nodejs: "19"
-    # rust: "1.64"
-    # golang: "1.19"
+    python: "3.12"  # Updated to Python 3.12 for compatibility
+    # Additional tools if needed:
+    # nodejs: "20"
+    # rust: "1.75"
+    # golang: "1.21"
 
+# MkDocs configuration
 mkdocs:
   configuration: mkdocs.yml
+  install_requirements: true
 
-# Optionally declare the Python requirements required to build your docs
+# Python dependencies for documentation building
 python:
-   install:
-   - requirements: docs/requirements.txt
+  install:
+    - requirements: docs/requirements.txt
+    - method: pip
+      path: .
+      extra_requirements:
+        - docs
+
+# Build configuration
+build:
+  jobs:
+    post_build:
+      - name: "Build bilingual documentation"
+        commands:
+          - echo "Building Enhanced TEx documentation..."
+          - mkdocs build --clean
+          - echo "Documentation build completed successfully"
+
+# Documentation settings
+docs_dir: docs
+site_dir: site
+
+# Language configuration
+languages:
+  en:
+    name: English
+    default: true
+  vi:
+    name: Tiếng Việt
+    default: false
+
+# Search configuration
+search:
+  language: en
+  separator: '[\s\-,:!=\[\]()"/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+  prebuild_index: true
+  indexing: 'full'
+
+# Analytics and monitoring
+analytics:
+  google_analytics: G-XXXXXXXXXX
+  google_tag_manager: GTM-XXXXXXX
+
+# Repository information
+repository:
+  name: vsmz4laj7n/TEx
+  url: https://github.com/vsmz4laj7n/TEx
+  branch: main
+  version: latest
+
+# Documentation features
+features:
+  - search
+  - analytics
+  - versioning
+  - translations
+  - api_docs
+
+# Build hooks
+hooks:
+  pre_build:
+    - echo "Starting Enhanced TEx documentation build..."
+    - echo "Python version: $(python --version)"
+    - echo "MkDocs version: $(mkdocs --version)"
+  
+  post_build:
+    - echo "Enhanced TEx documentation build completed"
+    - echo "Documentation available at: https://enhanced-tex.readthedocs.io/"
+
+# Environment variables
+environment:
+  PYTHONPATH: .
+  MKDOCS_CONFIG_FILE: mkdocs.yml
+  DOCS_LANGUAGE: en
+
+# Build matrix for different Python versions
+build_matrix:
+  - python: "3.12"
+    name: "Python 3.12"
+  - python: "3.13"
+    name: "Python 3.13"
+
+# Documentation versions
+versions:
+  - latest
+  - stable
+  - v2.0.0
+  - v1.0.0
+
+# Subprojects (if any)
+subprojects:
+  - name: enhanced-tex-api
+    repository: vsmz4laj7n/TEx-API
+    path: api
+
+# Custom domains
+domains:
+  - enhanced-tex.readthedocs.io
+  - docs.enhanced-tex.org
+
+# Redirects
+redirects:
+  - from: /en/latest/
+    to: /en/
+  - from: /vi/latest/
+    to: /vi/
+  - from: /latest/
+    to: /en/
+
+# Sitemap configuration
+sitemap:
+  filename: sitemap.xml
+  changefreq: weekly
+  priority: 0.8
+
+# SEO configuration
+seo:
+  title: "Enhanced TEx - Advanced Telegram Data Extraction and Analysis Tool"
+  description: "Comprehensive Telegram data extraction, analysis, and visualization tool with advanced features for OSINT and investigation"
+  keywords:
+    - "Telegram"
+    - "OSINT"
+    - "Data Analysis"
+    - "Social Media"
+    - "Intelligence"
+    - "Forensics"
+    - "Investigation"
+    - "Security"
+    - "Python"
+    - "Telethon"
+  author: "Enhanced TEx Team"
+  robots: "index, follow"
+
+# Performance optimization
+performance:
+  cache:
+    enabled: true
+    duration: 3600
+  compression:
+    enabled: true
+    gzip: true
+    brotli: true
+
+# Security headers
+security:
+  headers:
+    - "X-Frame-Options: DENY"
+    - "X-Content-Type-Options: nosniff"
+    - "X-XSS-Protection: 1; mode=block"
+    - "Referrer-Policy: strict-origin-when-cross-origin"
+    - "Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://polyfill.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.github.com;"
+
+# Monitoring and alerts
+monitoring:
+  enabled: true
+  endpoints:
+    - /en/
+    - /vi/
+    - /api/
+  alerts:
+    - type: build_failure
+      email: enhanced-tex@github.com
+    - type: deployment_failure
+      email: enhanced-tex@github.com
+
+# Documentation quality checks
+quality:
+  spell_check: true
+  link_check: true
+  image_optimization: true
+  accessibility_check: true
+
+# Backup and recovery
+backup:
+  enabled: true
+  frequency: daily
+  retention: 30
+  storage: s3
+
+# Integration settings
+integrations:
+  github:
+    webhook: true
+    status_checks: true
+  slack:
+    notifications: true
+    channel: "#enhanced-tex"
+  discord:
+    notifications: true
+    webhook_url: "https://discord.com/api/webhooks/..."
+
+# Custom build commands
+build_commands:
+  - "pip install -r requirements.txt"
+  - "pip install -r docs/requirements.txt"
+  - "mkdocs build --clean --strict"
+  - "mkdocs gh-deploy --force"
+
+# Documentation testing
+testing:
+  enabled: true
+  commands:
+    - "mkdocs build --clean"
+    - "mkdocs serve --dev-addr=0.0.0.0:8000"
+  coverage:
+    minimum: 80
+    report: true
+
+# Deployment configuration
+deployment:
+  method: git
+  branch: gh-pages
+  force: true
+  clean: true
+  push: true
+
+# Documentation metrics
+metrics:
+  enabled: true
+  tracking:
+    - page_views
+    - search_queries
+    - download_counts
+    - user_engagement
+    - build_times
+    - error_rates
+
+# Support and contact information
+support:
+  email: enhanced-tex@github.com
+  github: https://github.com/vsmz4laj7n/TEx/issues
+  discord: https://discord.gg/enhanced-tex
+  telegram: https://t.me/enhanced_tex
+  documentation: https://enhanced-tex.readthedocs.io/
+
+# Legal and compliance
+legal:
+  privacy_policy: https://enhanced-tex.readthedocs.io/en/latest/privacy.html
+  terms_of_service: https://enhanced-tex.readthedocs.io/en/latest/terms.html
+  license: https://github.com/vsmz4laj7n/TEx/blob/main/LICENSE
+  copyright: "Copyright © 2024 Enhanced TEx Team"
