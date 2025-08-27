@@ -1,0 +1,220 @@
+# 📋 Yêu cầu Hệ thống
+
+## Dependencies Chính
+
+### Core Dependencies
+```
+Telethon>=1.34.0
+SQLAlchemy>=2.0.23
+aiosqlite>=0.19.0
+Jinja2>=3.1.2
+pandas>=2.1.4
+matplotlib>=3.8.0
+reportlab>=4.0.0
+networkx>=3.2.0
+folium>=0.15.0
+Pillow>=10.0.0
+```
+
+### Development Dependencies
+```
+pytest>=7.4.4
+ruff>=0.1.9
+mypy>=1.8.0
+tox>=4.11.4
+coverage>=7.4.0
+bandit>=1.7.5
+```
+
+## Yêu cầu Hệ thống
+
+### Operating Systems
+- **Linux**: Ubuntu 20.04+, Debian 11+, CentOS 8+
+- **macOS**: macOS 10.15+ (Catalina trở lên)
+- **Windows**: Windows 10+ (64-bit)
+
+### Python Versions
+- **Minimum**: Python 3.12
+- **Recommended**: Python 3.12+
+- **Latest**: Python 3.13
+
+### Hardware Requirements
+- **RAM**: Tối thiểu 4GB, Khuyến nghị 8GB+
+- **Storage**: Tối thiểu 10GB dung lượng trống
+- **CPU**: Khuyến nghị bộ xử lý đa nhân
+
+## Cài đặt Dependencies
+
+### Sử dụng pip
+```bash
+pip install -r requirements.txt
+```
+
+### Sử dụng Poetry
+```bash
+poetry install
+```
+
+### Sử dụng conda
+```bash
+conda install --file requirements.txt
+```
+
+## System Dependencies
+
+### Linux (Ubuntu/Debian)
+```bash
+sudo apt update
+sudo apt install python3-dev python3-pip python3-venv
+sudo apt install libffi-dev libssl-dev
+sudo apt install libfreetype6-dev libpng-dev
+```
+
+### macOS
+```bash
+brew install python@3.12
+brew install freetype png
+xcode-select --install
+```
+
+### Windows
+```bash
+# Cài đặt Visual C++ Build Tools
+# Tải từ: https://visualstudio.microsoft.com/visual-cpp-build-tools/
+```
+
+## Optional Dependencies
+
+### Visualization Enhancements
+```
+seaborn>=0.12.0
+plotly>=5.15.0
+bokeh>=3.0.0
+```
+
+### Machine Learning
+```
+scikit-learn>=1.3.0
+nltk>=3.8.0
+spacy>=3.6.0
+```
+
+### Database Support
+```
+psycopg2-binary>=2.9.0  # PostgreSQL
+pymongo>=4.4.0          # MongoDB
+redis>=4.5.0            # Redis
+```
+
+### Security
+```
+cryptography>=41.0.0
+pycryptodome>=3.18.0
+```
+
+## Version Compatibility
+
+### Tested Combinations
+| Python | Telethon | SQLAlchemy | Status |
+|--------|----------|------------|--------|
+| 3.12   | 1.34.0   | 2.0.23     | ✅     |
+| 3.13   | 1.34.0   | 2.0.23     | ✅     |
+| 3.11   | 1.34.0   | 2.0.23     | ⚠️     |
+
+### Known Issues
+- Python 3.11: Một số tính năng có thể không hoạt động
+- Python < 3.12: Không được hỗ trợ
+
+## Troubleshooting
+
+### Common Installation Issues
+
+#### Permission Errors
+```bash
+pip install --user -r requirements.txt
+```
+
+#### Compilation Errors
+```bash
+# Linux
+sudo apt install build-essential
+
+# macOS
+xcode-select --install
+
+# Windows
+# Cài đặt Visual Studio Build Tools
+```
+
+#### Version Conflicts
+```bash
+# Tạo môi trường ảo
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Dependency Resolution
+
+#### Using pip-tools
+```bash
+pip install pip-tools
+pip-compile requirements.in
+pip-sync requirements.txt
+```
+
+#### Using Poetry
+```bash
+poetry add package-name
+poetry update
+```
+
+## Performance Considerations
+
+### Memory Usage
+- **Minimum**: 4GB RAM
+- **Recommended**: 8GB+ RAM
+- **Large datasets**: 16GB+ RAM
+
+### Storage Requirements
+- **Base installation**: ~500MB
+- **Dependencies**: ~1GB
+- **Data storage**: Variable (10GB+ recommended)
+
+### CPU Requirements
+- **Single-threaded**: 2+ cores
+- **Multi-threaded**: 4+ cores recommended
+- **Large-scale analysis**: 8+ cores
+
+## Security Considerations
+
+### Package Verification
+```bash
+# Kiểm tra hash của packages
+pip install --require-hashes -r requirements.txt
+```
+
+### Vulnerability Scanning
+```bash
+# Sử dụng safety
+pip install safety
+safety check -r requirements.txt
+```
+
+### Regular Updates
+```bash
+# Cập nhật dependencies
+pip install --upgrade -r requirements.txt
+```
+
+## Support
+
+### Documentation
+- **Installation Guide**: [Hướng dẫn cài đặt](installation.md)
+- **Configuration**: [Cấu hình](configuration.md)
+- **Troubleshooting**: [Xử lý sự cố](troubleshooting.md)
+
+### Community
+- **GitHub Issues**: [Báo cáo vấn đề](https://github.com/vsmz4laj7n/TEx/issues)
+- **Discussions**: [Thảo luận](https://github.com/vsmz4laj7n/TEx/discussions)
+- **Discord**: [Tham gia Discord](https://discord.gg/enhanced-tex)
