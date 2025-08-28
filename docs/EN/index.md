@@ -1,165 +1,113 @@
-# 🚀 Enhanced TEx - Telegram Explorer
+# TEx Documentation - English
 
-**Advanced Telegram Data Extraction and Analysis Tool**
-
-[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
-[![Telethon](https://img.shields.io/badge/telethon-1.34.0+-green.svg)](https://docs.telethon.dev/)
-[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
-[![Documentation](https://img.shields.io/badge/docs-readthedocs.io-blue.svg)](https://enhanced-tex.readthedocs.io/)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/vsmz4laj7n/TEx/ci.yml?branch=main)](https://github.com/vsmz4laj7n/TEx/actions)
-
-## 📋 Overview
-
-Enhanced TEx is a comprehensive Telegram data extraction and analysis tool that provides advanced capabilities for scraping messages, user profiles, and media from Telegram groups and channels. Built with modern Python 3.12+ and Telethon, it offers a sophisticated database architecture with version control, media organization, and user profile tracking.
-
-**Author**: Enhanced TEx Team  
-**Version**: 2.0.0  
-**License**: MIT License
-
-## ✨ Key Features
-
-### 🏗️ **Enhanced Database Architecture**
-- **Group-Specific Databases**: Each group has its own `message.db` and `user.db`
-- **Media Organization**: Automatic organization by type (photos, videos, documents, audio)
-- **Version Control**: Track message edits and user profile changes
-- **Scalable Design**: Better performance with large datasets
-
-### 👤 **Advanced User Profile Scraping**
-- **Profile Pictures**: Automatic download with timestamp naming
-- **Bio & About**: Complete profile information extraction
-- **Status Tracking**: Online/offline status and last seen
-- **Version History**: Track profile changes over time
-- **Contact Information**: Phone numbers and mutual contact status
-- **Bot Detection**: Identify and flag bot accounts
-
-### 📊 **Enhanced Message Management**
-- **Message Version Control**: Track all versions of edited messages
-- **Delete Tracking**: Mark deleted messages without removing data
-- **Media Support**: Automatic download with metadata extraction
-- **Formatting Preservation**: Telegram formatting (bold, italic, code, spoiler, quote)
-- **Reply Threading**: Complete conversation threading support
-
-### 🔍 **Advanced Analysis Features**
-- **URL Scraping**: Extract all t.me URLs from messages with categorization
-- **Forwarding Analysis**: Track message propagation networks across channels
-- **Reaction Analysis**: Calculate engagement metrics and reaction patterns
-- **User Interaction Networks**: Visualize user relationships and communication patterns
-- **Intelligence Extraction**: Extract phone numbers, emails, IPs, and crypto addresses
-- **GPS Data Extraction**: Extract location data from media files
-- **Named Entity Recognition**: Identify persons, organizations, and locations
-- **Ideological Analysis**: Detect hate speech, extremism, and conspiracy indicators
-- **Threat Assessment**: Automated threat scoring and risk assessment
-
-### 📈 **Professional Visualizations**
-- **Graphs & Charts**: PDF reports with matplotlib and reportlab
-- **Social Networks**: PNG visualizations using networkx and matplotlib
-- **Interactive Maps**: HTML maps with folium for location data
-- **Text Reports**: Comprehensive PDF reports with detailed findings
-
-### 🔄 **Migration & Compatibility**
-- **Automatic Migration**: Seamless transition from old to new architecture
-- **Backward Compatibility**: Works with existing configurations
-- **Data Preservation**: All existing data is preserved during migration
+Welcome to the TEx (Enhanced Telegram Explorer) English documentation. This comprehensive guide covers all aspects of using TEx for Telegram data extraction, analysis, and monitoring.
 
 ## 🚀 Quick Start
 
-### 1. **Installation**
-
+### 1. Installation
 ```bash
-# Clone the repository
+# Install TEx
+pip install TelegramExplorer
+
+# Or from source
 git clone https://github.com/vsmz4laj7n/TEx.git
 cd TEx
-
-# Install dependencies
 pip install -r requirements.txt
+pip install -e .
 ```
 
-### 2. **Configuration**
+### 2. Configuration
+```bash
+# Copy configuration template
+cp TEx/config.ini config.ini
 
-Create or update your `config.ini` file:
+# Edit with your Telegram API credentials
+nano config.ini
+```
 
+### 3. First Run
+```bash
+# Connect to Telegram
+python -m TEx connect --config config.ini
+
+# Load groups
+python -m TEx load_groups --config config.ini
+
+# Download messages
+python -m TEx download_messages --config config.ini --group_id 123456789
+
+# Analyze data
+python -m TEx analyze --config config.ini --group_id 123456789 --visual-data
+```
+
+## 📖 User Guide
+
+### Core Commands
+
+#### Connection & Setup
+- **[Authentication](authentication.md)** - Setting up Telegram API credentials
+- **[Installation](installation.md)** - Complete installation guide
+- **[Basic Configuration](configuration/basic.md)** - Essential configuration settings
+
+#### Data Collection
+- **[Download Messages](user-guide/download_messages.md)** - Download message history from groups
+- **[Real-time Monitoring](user-guide/listen.md)** - Continuous message monitoring
+- **[User Profile Scraping](user-guide/user_scraping.md)** - Extract user profiles and data
+- **[Group Management](user-guide/groups.md)** - Load and manage Telegram groups
+
+#### Analysis & Intelligence
+- **[Data Analysis](user-guide/analysis.md)** - Analyze downloaded data
+- **[Visual Data Generation](user-guide/visual_data.md)** - Create visualizations and reports
+- **[Intelligence Features](user-guide/intelligence.md)** - PII extraction and threat assessment
+- **[Network Analysis](user-guide/networks.md)** - User interaction networks
+
+#### Export & Reporting
+- **[Report Generation](user-guide/reports.md)** - Generate comprehensive reports
+- **[Text Export](user-guide/export_text.md)** - Export filtered text data
+- **[File Export](user-guide/export_file.md)** - Export media files
+- **[HTML Export](user-guide/export_html.md)** - Export to HTML format
+- **[Gephi Export](user-guide/gephi_export.md)** - Export network data for analysis
+
+#### Maintenance
+- **[Database Management](user-guide/database.md)** - Database operations and maintenance
+- **[Data Cleanup](user-guide/cleanup.md)** - Purge old data and files
+- **[Troubleshooting](user-guide/troubleshooting.md)** - Common issues and solutions
+
+## 🔧 Configuration
+
+### Configuration Files
+- **[Basic Configuration](configuration/basic.md)** - Essential settings for getting started
+- **[Complete Configuration Example](configuration/complete_configuration_file_example.md)** - Full config.ini reference
+- **[Media Download Configuration](configuration/media_download_configuration.md)** - Media handling settings
+- **[Analysis Configuration](configuration/analysis_configuration.md)** - Analysis and visualization settings
+
+### Configuration Sections
+
+#### Core Configuration
 ```ini
 [CONFIGURATION]
-# Get these from https://my.telegram.org/apps
 api_id=YOUR_API_ID_HERE
 api_hash=YOUR_API_HASH_HERE
 phone_number=YOUR_PHONE_NUMBER_HERE
-data_path=./DataPath/
+data_path=./data/
 device_model=Desktop
 timeout=30
 ```
 
-### 3. **Connect to Telegram**
-
-```bash
-python3 -m TEx connect --config config.ini
-```
-
-### 4. **Download Messages with Enhanced Features**
-
-```bash
-# Basic message download
-python3 -m TEx download_messages --config config.ini --group_id 123456789
-
-# With analysis features
-python3 -m TEx download_messages --config config.ini --group_id 123456789 --url-scraping --forwarding-analysis --reaction-analysis
-
-# With user profile scraping
-python3 -m TEx download_messages --config config.ini --group_id 123456789 --scrape_user_profiles
-```
-
-### 5. **Analyze Downloaded Data**
-
-```bash
-# Comprehensive analysis
-python3 -m TEx analyze --config config.ini --group_id 123456789 --visual-data --generate-visualizations
-```
-
-## 📁 Directory Structure
-
-```
-DataPath/
-├── 2964586611/                    # Group-specific folder (named by group ID)
-│   ├── message.db                 # Messages + media references + version control
-│   ├── user.db                    # Group members + bio + profile pics
-│   └── media/                     # Group media files
-│       ├── photos/
-│       ├── videos/
-│       ├── documents/
-│       ├── audio/
-│       ├── voice/
-│       └── stickers/
-├── UserProfile/                   # Global user profiles
-│   ├── 123456789.db              # Individual user databases
-│   ├── 987654321.db
-│   ├── Media/
-│   │   ├── ProfilePicture/        # Profile pictures (UID-DateTime.jpg)
-│   │   └── PublicPosts/           # Public posts (if any)
-│   └── user_index.db              # Index of all users
-└── visualizations/                # Generated visualizations
-    ├── 123456789/                 # Group-specific visualizations
-    │   ├── group_123456789_charts.pdf
-    │   ├── group_123456789_social_network.png
-    │   ├── group_123456789_map.html
-    │   └── group_123456789_analysis_report.pdf
-    └── cross_group_analysis/      # Cross-group comparisons
-```
-
-## 🔧 Configuration
-
-### **Pipeline Configuration**
+#### Download Configuration
 ```ini
-[pipeline_sequence]
-enhanced_telegram_messages_scrapper.EnhancedTelegramMessagesScrapper
-enhanced_user_profile_scraper.EnhancedUserProfileScraper
-enhanced_url_scraper.EnhancedUrlScraper
-enhanced_forwarding_analyzer.EnhancedForwardingAnalyzer
-enhanced_reaction_analyzer.EnhancedReactionAnalyzer
-enhanced_data_analyzer.EnhancedDataAnalyzer
-enhanced_visualization_generator.EnhancedVisualizationGenerator
+[DOWNLOAD_CONFIG]
+default_message_limit=None
+batch_size=100
+batch_delay=0.1
+message_delay=0.05
+progress_update_interval=100
+fast_counting_enabled=True
+status_check_enabled=True
+status_check_batch_size=1000
 ```
 
-### **Analysis Configuration**
+#### Analysis Configuration
 ```ini
 [SELECTOR_PATTERNS]
 phone_pattern=\b(?:\+?1[-.]?)?\(?([0-9]{3})\)?[-.]?([0-9]{3})[-.]?([0-9]{4})\b
@@ -167,121 +115,274 @@ email_pattern=\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b
 url_pattern=https?://(?:[-\w.])+(?:[:\d]+)?(?:/(?:[\w/_.])*(?:\?(?:[\w&=%.])*)?(?:#(?:[\w.])*)?)?
 ip_pattern=\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b
 crypto_pattern=\b[13][a-km-zA-HJ-NP-Z1-9]{25,34}\b
-
-[IDEOLOGICAL_KEYWORDS]
-hate_speech=hate,racist,bigot,nazi,supremacist,white nationalist,anti-semitic
-extremism=extremist,radical,terrorist,jihad,white power,anarchist,revolutionary
-conspiracy=conspiracy,deep state,illuminati,chemtrails,flat earth,new world order
-sovereign_citizen=sovereign,freeman,common law,strawman,admiralty,maritime law
-incel_terminology=incel,chad,stacy,blackpill,redpill,bluepill,mgtow
-
-[THREAT_KEYWORDS]
-capability=weapon,gun,bomb,explosive,knife,ammo,ammunition,firearm
-violent_intent=kill,murder,attack,shoot,bomb,terror,assassinate,eliminate
-weapons=rifle,pistol,shotgun,ammunition,explosive,knife,grenade,molotov
-threatening=threat,warning,danger,attack,kill,destroy,eliminate,neutralize
 ```
 
-## 📊 Database Models
+## 🔍 Advanced Features
 
-### **Enhanced Message Model**
-```python
-class TelegramMessageOrmEntity:
-    # Primary keys
-    id: int
-    group_id: int
-    
-    # Content
-    message: str
-    text_entities: str  # JSON formatting entities
-    raw: str
-    
-    # Media
-    has_media: bool
-    media_type: str
-    media_path: str
-    
-    # Version control
-    version: int
-    is_edited: bool
-    is_deleted: bool
-    edit_date: datetime
-    delete_date: datetime
-    message_status: str  # active, edited, deleted
+### Analysis Modules
+
+#### URL Analysis
+- Extract and categorize t.me links and other URLs
+- Track URL propagation across groups
+- Analyze link sharing patterns
+
+#### Forwarding Analysis
+- Track message propagation networks
+- Identify original sources and spread patterns
+- Analyze forwarding behavior and timing
+
+#### Reaction Analysis
+- Analyze user engagement through reactions
+- Identify popular content and users
+- Track reaction trends over time
+
+#### Selector Extraction
+- Extract phone numbers, emails, IPs
+- Identify cryptocurrency addresses
+- Extract URLs and social media links
+
+#### GPS Data Extraction
+- Extract location data from image EXIF metadata
+- Create interactive maps with user locations
+- Generate location-based analysis reports
+
+#### Named Entity Recognition
+- Identify person names and aliases
+- Extract organization names
+- Detect geographic locations and dates
+
+### Intelligence Features
+
+#### Ideological Analysis
+- Detect hate speech and extremist terminology
+- Identify conspiracy theory indicators
+- Analyze sovereign citizen terminology
+- Multi-language support (English and Vietnamese)
+
+#### Threat Assessment
+- Identify capability indicators
+- Detect violent intent and threats
+- Analyze proximity-based threat patterns
+- Risk scoring and prioritization
+
+#### User Interaction Networks
+- Map user relationships and interactions
+- Identify key influencers and communities
+- Analyze community structure and dynamics
+- Export to Gephi-compatible formats
+
+#### Message Pattern Analysis
+- Analyze posting patterns and frequency
+- Track user activity over time
+- Identify behavioral patterns and trends
+- Generate activity heatmaps
+
+## 📊 Output Formats
+
+### Visual Data Generation
+- **PDF Charts**: Statistical charts and graphs
+- **PNG Social Graphs**: User interaction networks
+- **HTML Maps**: Interactive maps with GPS data
+- **PDF Reports**: Comprehensive analysis reports
+- **JSON Data**: Structured data for further processing
+
+### Gephi Export Formats
+- **GEXF**: Graph Exchange XML Format
+- **GraphML**: Graph Markup Language
+- **CSV**: Comma-separated values (nodes and edges)
+
+### Report Formats
+- **HTML**: Interactive web reports with embedded visualizations
+- **Text**: Plain text exports with filtering options
+- **CSV**: Structured data exports for analysis
+- **JSON**: Machine-readable data for automation
+
+## 🏗️ Architecture
+
+### Pipeline System
+TEx uses a modular pipeline system with the following stages:
+
+1. **Pre-Pipeline**: Initialization, configuration, database setup
+2. **Core Pipeline**: Connection, group loading, basic functionality
+3. **Command-Specific Pipelines**:
+   - **Download Pipeline**: Message and media downloading
+   - **Listen Pipeline**: Real-time monitoring
+   - **Analysis Pipeline**: Data analysis and visualization
+   - **Report Pipeline**: Report generation and export
+4. **Post-Pipeline**: Cleanup and resource management
+
+### Database Structure
+- **Group-specific databases**: `message.db`, `user.db` for each group
+- **Global user databases**: `user_index.db`, `user_profiles.db`
+- **Enhanced schema**: User flags, message metadata, interaction tracking
+- **WAL mode**: Real-time database updates with improved concurrency
+
+### Module System
+- **Core modules**: Connection, database, configuration management
+- **Scraping modules**: Message, user, media extraction
+- **Analysis modules**: URL, forwarding, reaction, visual data analysis
+- **Export modules**: Report generation, file export, data formatting
+
+## 🔒 Security & Privacy
+
+### Data Protection
+- **Local storage**: All data stored locally on your machine
+- **No cloud uploads**: No data is sent to external servers
+- **Configurable retention**: Control data retention periods
+- **Secure authentication**: Telegram API authentication only
+
+### Privacy Features
+- **User consent**: Respects Telegram's terms of service
+- **Rate limiting**: Built-in rate limiting to avoid API restrictions
+- **Error handling**: Graceful handling of access restrictions
+- **Logging control**: Configurable logging levels
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+#### Authentication Problems
+```bash
+# Clear session and re-authenticate
+rm -rf data/session/
+python -m TEx connect --config config.ini
 ```
 
-### **Enhanced User Model**
-```python
-class TelegramUserOrmEntity:
-    # Basic info
-    id: int
-    first_name: str
-    last_name: str
-    username: str
-    phone_number: str
-    
-    # Profile
-    bio: str
-    about: str
-    has_profile_photo: bool
-    profile_photo_path: str
-    profile_photo_date: datetime
-    
-    # Status
-    status: str
-    was_online: datetime
-    
-    # Version control
-    profile_version: int
-    last_updated: datetime
+#### Database Issues
+```bash
+# Fix database inconsistencies
+python -m TEx fix_database --config config.ini
 ```
 
-## 🛡️ Privacy & Security
+#### Memory Issues
+```bash
+# Reduce batch size in config.ini
+batch_size=50
+```
 
-### **Privacy Features**
-- **Local Storage**: All data stored locally on your machine
-- **No Cloud Upload**: No data is sent to external servers
-- **Configurable Retention**: Set your own data retention policies
-- **Secure Authentication**: Uses Telegram's official API
+#### Rate Limiting
+```bash
+# Increase delays in config.ini
+batch_delay=0.5
+message_delay=0.1
+```
 
-### **Security Features**
-- **API Key Protection**: Secure storage of Telegram API credentials
-- **Rate Limiting**: Automatic delays to avoid API limits
-- **Error Handling**: Graceful handling of authentication failures
-- **Data Encryption**: Optional encryption for sensitive data
+### Performance Optimization
+- **Batch processing**: Configure appropriate batch sizes
+- **Memory management**: Monitor memory usage for large datasets
+- **Database optimization**: Use SSD storage for better performance
+- **Network optimization**: Configure appropriate delays and timeouts
+
+## 📋 Command Reference
+
+### Available Commands
+
+| Command | Description | Usage |
+|---------|-------------|-------|
+| `connect` | Create Telegram connection and store authentication | `python -m TEx connect --config config.ini` |
+| `load_groups` | Download and refresh groups and members list | `python -m TEx load_groups --config config.ini` |
+| `download_messages` | Download message history | `python -m TEx download_messages --config config.ini --group_id 123456789` |
+| `listen` | Actively listen to all chats (continuous monitoring) | `python -m TEx listen --config config.ini --group_id 123456789` |
+| `analyze` | Analyze downloaded data | `python -m TEx analyze --config config.ini --group_id 123456789 --visual-data` |
+| `report` | Generate reports with messages and media | `python -m TEx report --config config.ini --group_id 123456789` |
+| `export_text` | Export messages using regex filters | `python -m TEx export_text --config config.ini --group_id 123456789` |
+| `export_file` | Export files by mime type | `python -m TEx export_file --config config.ini --group_id 123456789` |
+| `export_html` | Export messages to HTML format | `python -m TEx export_html --config config.ini --group_id 123456789` |
+| `scrape_user_profiles` | Scrape user profiles with photos and bio | `python -m TEx scrape_user_profiles --config config.ini --user_ids 123456789` |
+| `user_scrape` | Scrape user profiles with real-time database updates | `python -m TEx user_scrape --config config.ini --group-ids 123456789` |
+| `list_groups` | List all downloaded groups | `python -m TEx list_groups --config config.ini` |
+| `stats` | Show statistics from phone number groups | `python -m TEx stats --config config.ini` |
+| `purge_old_data` | Purge old messages and media | `python -m TEx purge_old_data --config config.ini` |
+| `fix_database` | Fix database inconsistencies and sync user data | `python -m TEx fix_database --config config.ini` |
+
+### Command Options
+
+#### Download Messages Options
+```bash
+# Basic download
+python -m TEx download_messages --config config.ini --group_id 123456789
+
+# Download with options
+python -m TEx download_messages \
+  --config config.ini \
+  --group_id 123456789 \
+  --limit 10000 \
+  --ignore_media \
+  --latest \
+  --force-rescrape
+```
+
+#### Analysis Options
+```bash
+# Comprehensive analysis
+python -m TEx analyze \
+  --config config.ini \
+  --group_id 123456789 \
+  --visual-data \
+  --generate-visualizations \
+  --url-analysis \
+  --forwarding-analysis \
+  --reaction-analysis \
+  --gephi-format GEXF
+```
+
+#### Export Options
+```bash
+# Export with filters
+python -m TEx export_text \
+  --config config.ini \
+  --group_id 123456789 \
+  --filter "keyword" \
+  --limit_days 30 \
+  --desc
+
+# Export specific file types
+python -m TEx export_file \
+  --config config.ini \
+  --group_id 123456789 \
+  --mimetype "image/jpeg" \
+  --limit_days 7
+```
+
+## 📈 Examples & Tutorials
+
+### Basic Tutorials
+- **[First Analysis](tutorials/first_analysis.md)** - Complete first analysis workflow
+- **[Real-time Monitoring](tutorials/monitoring.md)** - Setting up continuous monitoring
+- **[User Analysis](tutorials/user_analysis.md)** - Analyzing user behavior
+- **[Network Analysis](tutorials/network_analysis.md)** - Creating interaction networks
+
+### Advanced Tutorials
+- **[Cross-group Analysis](tutorials/cross_group.md)** - Analyzing multiple groups
+- **[Threat Assessment](tutorials/threat_assessment.md)** - Conducting threat analysis
+- **[Custom Analysis](tutorials/custom_analysis.md)** - Creating custom analysis workflows
+- **[Report Automation](tutorials/automation.md)** - Automating report generation
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guide](contributing.md) for details.
+We welcome contributions! Please see our [Contributing Guide](../CONTRIBUTING.md) for details.
 
-### **Development Setup**
+### Development Setup
 ```bash
-# Clone the repository
+# Clone repository
 git clone https://github.com/vsmz4laj7n/TEx.git
 cd TEx
 
 # Install development dependencies
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
+poetry install
 
 # Run tests
-pytest tests/
+poetry run pytest
 
 # Run linting
-ruff check .
+poetry run ruff check .
 ```
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Original TEx**: Based on the original Telegram Explorer by Th3 0bservator
-- **Telethon**: Telegram client library for Python
-- **SQLAlchemy**: Database toolkit and ORM
-- **Matplotlib/NetworkX/Folium**: Visualization libraries
-- **ReportLab**: PDF generation library
+### Code Style
+- **Python**: Follow PEP 8 guidelines
+- **Type hints**: Use type annotations
+- **Documentation**: Docstrings for all functions
+- **Testing**: Unit tests for new features
 
 ## 📞 Support
 
@@ -289,6 +390,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Issues**: [GitHub Issues](https://github.com/vsmz4laj7n/TEx/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/vsmz4laj7n/TEx/discussions)
 
+## 📄 License
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](../../LICENSE) file for details.
+
 ---
 
-**Enhanced TEx Team** - Making Telegram data analysis professional and comprehensive.
+**Enhanced TEx Team** - Building the future of Telegram data analysis and intelligence gathering.
